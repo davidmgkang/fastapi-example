@@ -51,7 +51,14 @@ async def read_items(
 async def read_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
 
+
 @app.get("/date/")
 async def get_date():
+    now = datetime.now()    
+    return {"date" : date}
+
+@app.get("/lover/")
+async def get_lover():
     now = datetime.now()
-    return {"date" : now}
+    my_lover = "mangokim"
+    return {"my_lover" : my_lover, "now" : now}

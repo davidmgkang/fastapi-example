@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
     <link rel="stylesheet" href="/static/style.css"></link>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.15.2/antd.min.js" integrity="sha512-gzSgIZOTyFwBSIX3ezCnuPyUgKGsJ/tGXLZ1uF7En1I+/FTuaz7iJmazu3N+J0PkpHmSZ4Q+AmoOxkbjhi4Y7A==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.15.2/antd.min.css" integrity="sha512-sW2OY/VffZ3OJ9Gbps+88dLVF1w4FvxGkT4jJXqks04ERQj6FhQTc9DuD6n6UdeJp5zPRCGSFT7dhJHXSso63A==" crossorigin="anonymous" />
     <title>Document</title>
 </head>
 <body>
     <h1>Hello Fastapi!</h1>
     <button id="call">Get Date</button>
     <input id="name" type="textarea" />
+    <input id="lover_name" type="textarea"/>
 </body>
 
 
@@ -19,11 +23,15 @@
 
     button = document.getElementById("call");
     button.addEventListener("click", function(){
-        axios.get('/date/')
+        axios.get('/lover/')
             .then(function(response) {
-                value = response.data.date;
-                console.log(value)
-                document.getElementById("name").setAttribute("value", value);
+                console.log(response.data);
+                const lover_name = response.data.my_lover;
+                const now = response.data.now;                
+
+                document.getElementById("lover_name").setAttribute("value", lover_name)
+                document.getElementById("name").setAttribute("value", now);
+                
             });
     })
 
